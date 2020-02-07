@@ -1,0 +1,31 @@
+<mat-card>
+    <form #idform = "ngForm"
+    (ngSubmit)="ajouterLivre(idform.value.num, idform.value.titre, idform.value.pages); idform.reset()">
+      <mat-form-field>
+        <input  type = "number" matInput placeholder="Numero" ngModel name="num">
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput placeholder="Titre" ngModel name="titre">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Pages" ngModel name="pages">
+    </mat-form-field>
+        <input type="submit">
+    </form>
+</mat-card>
+
+<mat-list>
+      <mat-card *ngFor="let livre of livres">  
+      
+      <mat-card-title>
+        [{{livre.numero}}] {{livre.titre}} 
+          <button (click)="deleteLivre(livre.numero)"><mat-icon>delete</mat-icon></button>
+          <button (click)="updateLivre(livre)"><mat-icon>create</mat-icon></button>
+      </mat-card-title>
+      
+      <ul>
+        <mat-card-content>{{livre.pages}}</mat-card-content>
+      </ul>
+  
+    </mat-card>
+  </mat-list>
